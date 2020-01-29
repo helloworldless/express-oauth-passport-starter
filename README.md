@@ -1,4 +1,6 @@
-# GCP App Engine OAuth
+# Express OAuth Passport Starter
+
+Starter project using Passport for OAuth with Express; Deployable to Google App Engine
 
 ## Run Locally
 

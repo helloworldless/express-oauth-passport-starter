@@ -8,7 +8,7 @@ See [Passport](http://www.passportjs.org/) docs.
 ## Run Locally
 
 1. Set the environment variables `OAUTH_CLIENT_ID` and `OAUTH_CLIENT_SECRET` 
-   or replace their `PLACEHOLDER` values in `config.js
+   or replace their `PLACEHOLDER` values in `config.js`
 2. Run `yarn` or `npm i` to install dependencies
 3. Run `yarn start` or `npm run start`
 4. App starts at [http://localhost:8080](http://localhost:8080)

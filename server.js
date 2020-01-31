@@ -10,6 +10,9 @@ const server = http.Server(app);
 const passport = require("passport");
 const auth = require("./auth");
 
+const flash = require("connect-flash");
+app.use(flash());
+
 app.set("view engine", "ejs");
 
 auth(passport);
@@ -42,13 +45,14 @@ app.use((req, res, next) => {
   if (req.user && req.user.profile && req.user.profile.photos) {
     res.locals.avatarUrl = req.user.profile.photos[0].value;
   }
+
   next();
 });
 
 app.get("/", (req, res) => {
   if (!req.user || !req.isAuthenticated()) {
     res.render("login", {
-      loginUrl: `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&scope=profile&client_id=${config.oAuthClientID}&redirect_uri=${config.oAuthCallbackUrl}&state=test_not_for_prod`
+      loginUrl: PATH_AUTH_GOOGLE
     });
   } else {
     res.render("home", { user: req.user });
@@ -61,8 +65,9 @@ app.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
+const PATH_AUTH_GOOGLE = "/auth/google";
 app.get(
-  "/auth/google",
+  PATH_AUTH_GOOGLE,
   passport.authenticate("google", {
     scope: config.scopes,
     failureFlash: true,
@@ -71,11 +76,12 @@ app.get(
 );
 
 app.get(
-  "/auth/google/callback",
+  `${PATH_AUTH_GOOGLE}/callback`,
   passport.authenticate("google", {
     failureRedirect: "/",
     failureFlash: true,
-    session: true
+    session: true,
+    state: true
   }),
   (req, res) => {
     res.redirect("/");

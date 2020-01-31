@@ -3,7 +3,7 @@ const oAuthClientID = process.env.OAUTH_CLIENT_ID;
 const oAuthclientSecret = process.env.OAUTH_CLIENT_SECRET;
 
 function isSet(env) {
-  return env !== undefined;
+  return env !== undefined && env !== "undefined" && env !== "";
 }
 
 const config = {

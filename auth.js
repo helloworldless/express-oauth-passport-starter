@@ -10,6 +10,7 @@ module.exports = passport => {
         clientID: config.oAuthClientID,
         clientSecret: config.oAuthclientSecret,
         callbackURL: config.oAuthCallbackUrl,
+        state: true,
         userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
       },
       (token, refreshToken, profile, done) => done(null, { profile, token })

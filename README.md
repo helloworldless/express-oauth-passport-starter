@@ -1,7 +1,6 @@
 # Express OAuth Passport Starter
 
 Starter project using Passport for OAuth with Express. 
-**NOT** production ready (doesn't verify callback `state`). 
 Works with Google but can easily be modified for other providers. 
 See [Passport](http://www.passportjs.org/) docs.
 
